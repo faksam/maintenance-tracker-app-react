@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthForm Component should render without throwing an error 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="tab col col-1"
+  >
+    <button
+      className="tablinks sign-tab"
+      id="signUpTab"
+      type="button"
+    >
+      Sign Up
+    </button>
+    <button
+      className="tablinks sign-tab"
+      id="signInTab"
+      type="button"
+    >
+      Sign In
+    </button>
+  </div>
+  <div
+    id="loginErrorDiv"
+  >
+    <p
+      className="hide-div"
+      id="loginErrorMessage"
+    />
+  </div>
+  <div
+    id="errorDiv"
+  >
+    <p
+      className="hide-div"
+      id="signupErrorMessage"
+    />
+  </div>
+  <div
+    className="tabcontent center"
+    id="signInTabForm"
+  >
+    <SignInTabForm
+      accountEmail=""
+      accountPassword=""
+      handleChange={[Function]}
+      handleSignIn={[Function]}
+    />
+  </div>
+  <div
+    className="tabcontent"
+    id="signUpTabForm"
+  >
+    <SignUpTabForm
+      confirmPassword=""
+      email=""
+      fullname=""
+      handleChange={[Function]}
+      handleSignUp={[Function]}
+      password=""
+    />
+  </div>
+</div>
+`;
+
+exports[`AuthForm Component should render without throwing an error 2`] = `
+<div
+  className="row"
+>
+  <div
+    className="tab col col-1"
+  >
+    <button
+      className="tablinks sign-tab"
+      id="signUpTab"
+      type="button"
+    >
+      Sign Up
+    </button>
+    <button
+      className="tablinks sign-tab"
+      id="signInTab"
+      type="button"
+    >
+      Sign In
+    </button>
+  </div>
+  <div
+    id="loginErrorDiv"
+  >
+    <p
+      className="hide-div"
+      id="loginErrorMessage"
+    />
+  </div>
+  <div
+    id="errorDiv"
+  >
+    <p
+      className="hide-div"
+      id="signupErrorMessage"
+    />
+  </div>
+  <div
+    className="tabcontent center"
+    id="signInTabForm"
+  >
+    <SignInTabForm
+      accountEmail=""
+      accountPassword=""
+      handleChange={[Function]}
+      handleSignIn={[Function]}
+    />
+  </div>
+  <div
+    className="tabcontent"
+    id="signUpTabForm"
+  >
+    <SignUpTabForm
+      confirmPassword=""
+      email=""
+      fullname=""
+      handleChange={[Function]}
+      handleSignUp={[Function]}
+      password=""
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignInTabForm Component should render without throwing an error 1`] = `
+<ViewRequest
+  auth={true}
+  confirmPassword="Lifeisarace"
+  email="fakunlesamuel@gmail.com"
+  error={Object {}}
+  fullname="fakunlesamuel@gmail.com"
+  handleChange={[MockFunction]}
+  handleCreateRequest={[MockFunction]}
+  handleSignIn={[MockFunction]}
+  handleSignUp={[MockFunction]}
+  hideModalRequest={[MockFunction]}
+  history={Object {}}
+  loadRequestsAction={[MockFunction]}
+  password="Lifeisarace"
+  request={
+    Array [
+      Object {},
+    ]
+  }
+  signoutUserAction={[MockFunction]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+  user={
+    Object {
+      "email": "joeeasy@gmail.com",
+      "iat": 1540985284931,
+      "id": "6bf54873-6033-4ab0-855d-336a34e1dfbc",
+      "role": "Admin",
+      "username": "joeeasy",
+    }
+  }
+  viewClickedRequest={[MockFunction]}
+/>
+`;
+
+exports[`SignInTabForm Component should render without throwing an error 2`] = `
+<div
+  className="modal"
+  id="viewRequestModal"
+>
+  <div
+    className="modal-content"
+  >
+    <div
+      className="modal-header"
+    >
+      <span
+        className="close"
+        id="viewRequestSpan"
+        onClick={[MockFunction]}
+      >
+        ×
+      </span>
+    </div>
+    <div
+      className="modal-body"
+    >
+      <div
+        className="row left"
+      >
+        <div
+          className="container"
+        >
+          <br />
+          <div
+            className="col col-1"
+          >
+            <div
+              className="row"
+            >
+              <h2>
+                <b>
+                  Request title: 
+                </b>
+              </h2>
+              <h3
+                id="viewRequestTitle"
+              >
+                <b />
+              </h3>
+              <hr />
+              <h2>
+                <b>
+                  Request content:
+                </b>
+              </h2>
+              <h3
+                id="viewRequestDescription"
+              />
+              <h2>
+                <b>
+                  Request date:
+                </b>
+              </h2>
+              <h3
+                id="viewRequestDate"
+              />
+              <h2>
+                <b>
+                  Status:
+                </b>
+              </h2>
+              <h3
+                id="viewRequestStatus"
+              />
+            </div>
+          </div>
+          <br />
+          <br />
+          <br />
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+  </div>
+</div>
+`;

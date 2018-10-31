@@ -1,7 +1,6 @@
-import { bindActionCreators } from 'redux';
-import React, { Component } from 'react';
+import React from 'react';
+
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 /**
  * @class SignInTabForm
@@ -13,52 +12,55 @@ import { connect } from 'react-redux';
 const SignInTabForm = ({
   handleSignIn, accountEmail, accountPassword, handleChange
 }) => (
-      <div>
-        <div className="container">
-            <h2 className="float-left">Sign In</h2>
-            <form id="loginForm" className="center" method="POST">
-              <div className="row">
-                <div className="row">
-                  <div className="input col col-1">
-                    <i className="material-icons">email</i>
-                    <input
-                      id="accountEmail"
-                      name="accountEmail"
-                      type="email"
-                      placeholder="Email"
-                      value={accountEmail}
-                      onChange={handleChange}
-                      required />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="input col col-1">
-                    <i className="material-icons">account_circle</i>
-                    <input
-                      id="accountPassword"
-                      name="accountPassword"
-                      type="password"
-                      placeholder="Password"
-                      value={accountPassword}
-                      onChange={handleChange}
-                      required
-                      />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="input col col-1">
-                    <p id="" className="hide-div"></p>
-                    <button className="btn-signin"
-                      onClick={handleSignIn}
-                    >Sign In</button>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <br />
+  <div>
+    <div className="container">
+      <h2 className="float-left">Sign In</h2>
+      <form id="loginForm" className="center" method="POST">
+        <div className="row">
+          <div className="row">
+            <div className="input col col-1">
+              <i className="material-icons">email</i>
+              <input
+                id="accountEmail"
+                name="accountEmail"
+                type="email"
+                placeholder="Email"
+                value={accountEmail}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
-      </div>
-    );
+          <div className="row">
+            <div className="input col col-1">
+              <i className="material-icons">account_circle</i>
+              <input
+                id="accountPassword"
+                name="accountPassword"
+                type="password"
+                placeholder="Password"
+                value={accountPassword}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="input col col-1">
+              <button className="btn-signin"
+                onClick={handleSignIn}
+                type="button"
+              >
+                Sign In
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br />
+    </div>
+  </div>
+);
 
 SignInTabForm.propTypes = {
   handleSignIn: PropTypes.func.isRequired,

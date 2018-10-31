@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEmpty from 'is-empty';
-
-// import { createRequest } from '../../actions/request.actions';
-// import RequestValidation from '../../validations/validateRequest';
-// import ErrorAlertNotification from '../common/ErrorAlertNotification';
 
 /**
  * @class ViewRequest
@@ -26,49 +21,10 @@ export class ViewRequest extends Component {
     super(props);
 
     this.state = {
-      article: {},
       body: '',
       errors: {},
-      success: {},
-      done: false,
-      isLoading: false,
       error: '',
     };
-  }
-
-  onChange = (event) => {
-    const { errors } = this.state;
-    if (errors[event.target.id]) {
-      const newErrors = Object.assign({}, errors);
-      delete newErrors[event.target.id];
-      this.setState({
-        [event.target.id]: event.target.value, errors: newErrors
-      });
-    } else {
-      this.setState({
-        [event.target.id]: event.target.value
-      });
-    }
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault();
-    if (this.isValid()) {
-      const { article, createRequestAction } = this.props;
-      const { body } = this.state;
-
-      this.setState({
-        errors: {},
-        body: '',
-      });
-
-      const newRequest = {
-        slug: article.slug,
-        body,
-      };
-
-      createRequestAction(newRequest);
-    }
   }
 
   handleCloseError = () => {
@@ -77,17 +33,6 @@ export class ViewRequest extends Component {
       errors: {}
     });
   };
-
-  isValid = () => {
-    const { errors, isValid } = RequestValidation.requestValidate(this.state);
-    if (!isValid) {
-      this.setState({
-        errors,
-        error: errors.body[0],
-      });
-    }
-    return isValid;
-  }
 
   /**
    * @memberof RequestForm
@@ -143,8 +88,6 @@ export class ViewRequest extends Component {
           </div>
           <br />
           <br />
-          <div className="modal-footer">
-          </div>
         </div>
       </div>
     );
@@ -152,7 +95,7 @@ export class ViewRequest extends Component {
 }
 
 ViewRequest.propTypes = {
-  
+  createRequestAction: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignInTabForm Component should render without throwing an error 1`] = `
+<tr>
+  <td />
+  <td
+    colSpan="2"
+  />
+  <td />
+  <td
+    colSpan="2"
+  >
+    a few seconds ago
+  </td>
+</tr>
+`;

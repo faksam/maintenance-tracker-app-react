@@ -1,9 +1,8 @@
 import axios from 'axios';
 import Cookie from 'cookies-js';
 import jwt from 'jwt-simple';
-import toastr from 'toastr';
 
-import * as types from '../actions/types';
+import * as types from './types';
 import config from '../../config';
 
 export const setCurrentUser = user => ({
@@ -11,17 +10,22 @@ export const setCurrentUser = user => ({
   user
 });
 
-const signUpAction = userDetails => (dispatch) => {
-  const user = { user: userDetails };
-  return axios.post(`${config.apiUrl}auth/signup`, userDetails)
-    .then((response) => {
-      const { token } = response.data;
-      dispatch(setCurrentUser(jwt.decode(token, 'LifeIsARaceBeLikeWaterMakingItsWayThroughAllObjects')));
-      Cookie.set('jwtToken', token);
-    })
-    .catch((error) => {
-      // dispatch(setCurrentUserError(error.response.data));
-    });
-};
+export const setCurrentUserError = error => ({
+  type: types.SET_CURRENT_USER_ERROR,
+  error
+});
+
+const signUpAction = userDetails => dispatch => axios.post(
+  `${config.apiUrl}auth/signup`, userDetails
+)
+  .then((response) => {
+    const { token } = response.data;
+    dispatch(setCurrentUser(jwt.decode(token,
+      'LifeIsARaceBeLikeWaterMakingItsWayThroughAllObjects')));
+    Cookie.set('jwtToken', token);
+  })
+  .catch((error) => {
+    dispatch(setCurrentUserError(error.response.data.error));
+  });
 
 export default signUpAction;
