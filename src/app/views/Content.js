@@ -4,7 +4,6 @@ const Content = () => (
   <div className="content">
     <div className="display-middle">
     <p>Life is a race</p>
-      <p>This is a simple React, Webpack 4 boilerplate.</p>
       <p>
         <span>Design inspiration </span>
         <a

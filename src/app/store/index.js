@@ -13,7 +13,10 @@ const middleware = process.env.NODE_ENV
  *
  * @returns {Object} - Object containing data in redux store
  */
-export default initialState => createStore(
+
+const store = createStore(
   rootReducer,
   middleware
 );
+
+export default store;

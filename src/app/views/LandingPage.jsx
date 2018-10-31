@@ -1,14 +1,15 @@
 import React from 'react';
 
-import AuthForm from '../auth/AuthForm';
+import AuthForms from '../components/auth/AuthForms';
 
 import creatRequest from '../../images/create-request.png';
 import awaitApproval from '../../images/await-approval.png';
 import trackProgress from '../../images/track-progress.png';
 import getNotified from '../../images/get-notified.png';
 
-const LandingPage = () => (
-  <div className="main-container">
+const LandingPage = (props) => {
+    const { history } = props
+  return (<div className="main-container">
   <div className="row">
       <h1 className="center header-logo">M - T - A</h1>
   </div>
@@ -22,7 +23,7 @@ const LandingPage = () => (
                   done.</h3>
           </div>
           <div className="col col-1-2 float-right">
-              <AuthForm />
+              <AuthForms history={history} />
           </div>
       </div>
   </div>
@@ -83,7 +84,7 @@ const LandingPage = () => (
       </div>
   </div>
 
-</div>
-);
+</div>)
+};
 
 export default LandingPage;

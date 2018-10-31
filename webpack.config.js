@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const htmlPlugin = new HtmlWebPackPlugin({
@@ -33,6 +34,14 @@ module.exports = {
         ],
       }
     ]
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[hash].min.js',
+    publicPath: '/',
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   resolve: {
     extensions: [".scss", ".js", '.jsx', '.css']

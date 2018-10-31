@@ -2,10 +2,12 @@ import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
-import configureStore from './store/configureStore';
-import initialState from './store/initialState';
-const store = configureStore(initialState);
+import store from './store/index';
+import setAuthorizationToken from './utils/authorization';
+import setCurrentUserToStore from './utils/setCurrentUserToStore';
 
+setAuthorizationToken()
+setCurrentUserToStore(store)
 const App = () => (
   <Provider store={store}>
     <AppRouter />
