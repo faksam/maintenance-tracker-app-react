@@ -8,7 +8,7 @@ import trackProgress from '../../images/track-progress.png';
 import getNotified from '../../images/get-notified.png';
 
 const LandingPage = (props) => {
-    const { history } = props
+  const { history } = props;
   return (<div className="main-container">
   <div className="row">
       <h1 className="center header-logo">M - T - A</h1>
@@ -83,8 +83,8 @@ const LandingPage = (props) => {
           </p>
       </div>
   </div>
-
-</div>)
+</div>
+  );
 };
 
 export default LandingPage;

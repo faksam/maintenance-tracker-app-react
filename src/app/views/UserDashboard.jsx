@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEmpty from 'is-empty';
 
-import { loadRequests, createRequest } from '../actions/request.actions';
+import { loadRequests, createRequest, } from '../actions/request.actions';
+
+import signoutUser from '../actions/signout.actions';
 
 import ViewRequest from '../components/request/ViewRequest';
-import DisplayRequests from '../components/request/DisplayRequests';
 import RequestRow from '../components/request/RequestRow';
 import RequestForm from '../components/request/RequestForm';
 import maintenanceLogo from '../../images/maintenance.png';
 
 export class Dashboard extends Component {
     state = {
+        title: '',
+        description: '',
         dated: '',
         status: '',
         category: '',
@@ -26,40 +28,44 @@ export class Dashboard extends Component {
     };
 
 
-  componentDidMount = () => {
-    const { loadRequestsAction, user } = this.props;
-    let currentUser = {
-      url: 'users/requests'
-    };
-    if (user.role === 'Admin') {
-        user.url = 'requests';
-      }
-    loadRequestsAction(currentUser);
-  }
-  viewClickedRequest = request => e => {
-    this.setState({
-        showViewRequest: true,
-        request
-    });
-  }
+    componentDidMount = () => {
+        const { loadRequestsAction, user } = this.props;
+        let currentUser = {
+            url: 'users/requests'
+        };
+        loadRequestsAction(currentUser);
+    }
+    viewClickedRequest = request => e => {
+        this.setState({
+            showViewRequest: true,
+            request
+        });
+    }
 
-  hideModalRequest = e => {
-    e.preventDefault();
-    this.setState({
-        showViewRequest: false,
-        request: {},
-    });
-  }
-  handleCreateRequest = event => {
-      event.preventDefault();
-      this.setState({
-        showRequestForm: true,
-        request: {},
-    });
-  }
+    hideModalRequest = () => {
+        this.setState({
+            showViewRequest: false,
+            showRequestForm: false,
+            request: {},
+        });
+    }
+
+    handleCreateRequest = event => {
+        event.preventDefault();
+        this.setState({
+            showRequestForm: true,
+            request: {},
+        });
+    }
+    handleSignOut = event => {
+        event.preventDefault();
+        const { signoutUserAction } = this.props;
+        signoutUserAction();
+    }
     render() {
-        const { showViewRequest, request, showRequestForm } = this.state;
+        const { showViewRequest, request, showRequestForm, title, description } = this.state;
         const { requests } = this.props;
+
         return (
             <div>
                 <div className="main-container">
@@ -78,13 +84,13 @@ export class Dashboard extends Component {
                                     </div>
                                     <ul className="nav-list">
                                         <li id="adminhomepage" className="hide-div">
-                                            <a href="./adminhomepage.html">Home</a>
+                                            <a href="/">Home</a>
                                         </li>
                                         <li>
                                             <a href="#!">Account</a>
                                             <ul className="nav-dropdown">
                                                 <li>
-                                                    <a href="./homepage.html">My Requests</a>
+                                                    <a href="/dashboard">My Requests</a>
                                                 </li>
                                                 <li>
                                                     <a href="./user_account.html">My Account</a>
@@ -92,7 +98,7 @@ export class Dashboard extends Component {
                                             </ul>
                                         </li>
                                         <li>
-                                            <a id="signoutButton" href="./index.html">Sign Out</a>
+                                            <a id="signoutButton" onClick={this.handleSignOut}>Sign Out</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -140,8 +146,8 @@ export class Dashboard extends Component {
                                 <tbody id="requestTableBody">
                                     {
                                         requests ?
-                                        requests.map(request => <RequestRow key={request.id} request={request} viewClickedRequest={this.viewClickedRequest}/>) :
-                                        <tr>You have not made a request yet</tr>
+                                            requests.map(request => <RequestRow key={request.id} request={request} viewClickedRequest={this.viewClickedRequest} />) :
+                                            <tr>You have not made a request yet</tr>
                                     }
                                 </tbody>
                             </table>
@@ -150,34 +156,35 @@ export class Dashboard extends Component {
                     </div>
                     {showViewRequest && <ViewRequest showViewRequest={showViewRequest} request={request} hideModalRequest={this.hideModalRequest} />}
 
-                    {showRequestForm && <ViewRequest showRequestForm={showRequestForm} request={request} hideModalRequest={this.hideModalRequest} />}
-                
+                    {showRequestForm && <RequestForm showRequestForm={showRequestForm} request={request} hideModalRequest={this.hideModalRequest} title={title} description={description} />}
 
-                <br />
-                <br />
-                <div className="container">
-                    <div className="row">
-                        <div className="pagination">
-                            <section id="paginationSection">
-                                <h2>Jump to page:</h2>
-                            </section>
+
+                    <br />
+                    <br />
+                    <div className="container">
+                        <div className="row">
+                            <div className="pagination">
+                                <section id="paginationSection">
+                                    <h2>Jump to page:</h2>
+                                </section>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="footer">
-                    <div className="row">
-                        <p>
-                            © 2018 Copyright M-T-A by
+                    <div className="footer">
+                        <div className="row">
+                            <p>
+                                © 2018 Copyright M-T-A by
                     <a target="_blank" href="http://www.fakunlesamuel.com">FakSam</a>
-                        </p>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </div></div>
+                </div></div>
         )
     }
 }
 
 Dashboard.propTypes = {
+    signoutUserAction: PropTypes.func.isRequired,
     loadRequestsAction: PropTypes.func.isRequired,
     createRequestAction: PropTypes.func.isRequired,
     request: PropTypes.shape({}),
@@ -192,7 +199,8 @@ const mapStateToProps = state => ({
 
 const matchDispatchToProps = dispatch => bindActionCreators({
     loadRequestsAction: loadRequests,
-    createRequestAction: createRequest
+    createRequestAction: createRequest,
+    signoutUserAction: signoutUser,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(Dashboard);

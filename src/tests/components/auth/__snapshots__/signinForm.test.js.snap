@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthForms Component should render without throwing an error 1`] = `
+<div>
+  <div
+    className="container"
+  >
+    <h2
+      className="float-left"
+    >
+      Sign In
+    </h2>
+    <form
+      className="center"
+      id="loginForm"
+      method="POST"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <i
+              className="material-icons"
+            >
+              email
+            </i>
+            <input
+              id="accountEmail"
+              name="accountEmail"
+              onChange={[MockFunction]}
+              placeholder="Email"
+              required={true}
+              type="email"
+              value="fakunlesamuel@gmail.com"
+            />
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <i
+              className="material-icons"
+            >
+              account_circle
+            </i>
+            <input
+              id="accountPassword"
+              name="accountPassword"
+              onChange={[MockFunction]}
+              placeholder="Password"
+              required={true}
+              type="password"
+              value="Lifeisarace"
+            />
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <button
+              className="btn-signin"
+              onClick={[MockFunction]}
+              type="button"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <br />
+  </div>
+</div>
+`;

@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEmpty from 'is-empty';
 
 import { createRequest } from '../../actions/request.actions';
-// import RequestValidation from '../../validations/validateRequest';
-// import ErrorAlertNotification from '../common/ErrorAlertNotification';
 
 /**
  * @class RequestForm
@@ -26,68 +23,54 @@ export class RequestForm extends Component {
     super(props);
 
     this.state = {
-      article: {},
-      body: '',
+      closeModal: true,
+      title: '',
+      description: '',
       errors: {},
-      success: {},
-      done: false,
-      isLoading: false,
-      error: '',
     };
   }
 
   onChange = (event) => {
     const { errors } = this.state;
-    if (errors[event.target.id]) {
+    if (errors[event.target.name]) {
       const newErrors = Object.assign({}, errors);
-      delete newErrors[event.target.id];
+      delete newErrors[event.target.name];
       this.setState({
-        [event.target.id]: event.target.value, errors: newErrors
+        [event.target.name]: event.target.value, errors: newErrors
       });
     } else {
       this.setState({
-        [event.target.id]: event.target.value
+        [event.target.name]: event.target.value
       });
     }
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    if (this.isValid()) {
-      const { article, createRequestAction } = this.props;
-      const { body } = this.state;
+    const { createRequestAction, hideModalRequest } = this.props;
+    const { title, description } = this.state;
 
-      this.setState({
-        errors: {},
-        body: '',
-      });
+    this.setState({
+      errors: {},
+      description: '',
+      title: '',
+    });
 
-      const newRequest = {
-        slug: article.slug,
-        body,
-      };
+    hideModalRequest();
 
-      createRequestAction(newRequest);
-    }
+    const newRequest = {
+      title, description
+    };
+    createRequestAction(newRequest);
   }
 
   handleCloseError = () => {
     this.setState({
-      error: '',
-      errors: {}
+      errors: {},
+      description: '',
+      title: '',
     });
   };
-
-  isValid = () => {
-    const { errors, isValid } = RequestValidation.requestValidate(this.state);
-    if (!isValid) {
-      this.setState({
-        errors,
-        error: errors.body[0],
-      });
-    }
-    return isValid;
-  }
 
   /**
    * @memberof RequestForm
@@ -97,13 +80,21 @@ export class RequestForm extends Component {
    * @description Render the JSX template
    */
   render() {
-    const { error, body, errors } = this.state;
+    const { title, description, closeModal } = this.state;
+    const { request, showRequestForm, hideModalRequest } = this.props;
+
+    const showHideClassName = showRequestForm && closeModal ? 'display-block-modal' : 'modal';
 
     return (
-      <div id="createRequestModal" className="modal">
+      <div id="createRequestModal" className={showHideClassName}>
         <div className="modal-content">
           <div className="modal-header">
-            <span id="createRequestSpan" className="close">&times;</span>
+            <span
+              id="createRequestSpan"
+              onClick={hideModalRequest}
+              className="close"
+            >&times;
+            </span>
           </div>
           <div className="modal-body">
             <div className="row">
@@ -111,29 +102,45 @@ export class RequestForm extends Component {
                 <div className="row">
                   <h2 className="float-left">Create A New Request</h2>
                 </div>
-                <div className="row">
-                  <div id="errorDiv">
-                    <p id="createErrorMessage" className="hide-div"></p>
-                  </div>
-                </div>
                 <form className=" center" id="createRequestForm" method="POST">
                   <div className="row">
                     <div className="row">
                       <div className="input col col-1">
-                        <input id="requestTitle" name="title" type="text" placeholder="Request Title" required />
-                        <label id="titleLabel"></label>
+                        <input
+                          id="requestTitle"
+                          name="title"
+                          type="text"
+                          onChange={this.onChange}
+                          value={title}
+                          placeholder="Request Title"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="row">
                       <div className="input col col-1">
-                        <textarea name="description" rows="5" cols="50" id="requestDescription" placeholder="Request Description" className="desc-txt-area"
-                          required></textarea>
-                        <label id="descriptionLabel"></label>
+                        <textarea name="description"
+                          rows="5"
+                          cols="50"
+                          id="requestDescription"
+                          onChange={this.onChange}
+                          value={description}
+                          placeholder="Request Description"
+                          className="desc-txt-area"
+                          required
+                        />
                       </div>
                     </div>
                   </div>
                   <br />
-                  <button id="createUserRequestButton" className="btn-create-request">Create</button>
+                  <button
+                    type="button"
+                    id="createUserRequestButton"
+                    onClick={this.onSubmit}
+                    className="btn-create-request"
+                  >
+                    Create
+                  </button>
                 </form>
                 <br />
               </div>
@@ -141,8 +148,6 @@ export class RequestForm extends Component {
           </div>
           <br />
           <br />
-          <div className="modal-footer">
-          </div>
         </div>
       </div>
     );
@@ -151,17 +156,12 @@ export class RequestForm extends Component {
 
 RequestForm.propTypes = {
   createRequestAction: PropTypes.func.isRequired,
-  article: PropTypes.shape({}),
+  hideModalRequest: PropTypes.func,
+  showRequestForm: PropTypes.bool,
 };
-
-const mapStateToProps = state => ({
-  article: state.articleReducer.article,
-  error: state.auth.error,
-  auth: state.auth.isAuthenticated,
-});
 
 const matchDispatchToProps = dispatch => bindActionCreators({
   createRequestAction: createRequest,
 }, dispatch);
 
-export default connect(mapStateToProps, matchDispatchToProps)(RequestForm);
+export default connect(matchDispatchToProps)(RequestForm);

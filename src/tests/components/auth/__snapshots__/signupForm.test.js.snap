@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpTabForm Component should render without throwing an error 1`] = `
+<div>
+  <div
+    className="container"
+  >
+    <h2
+      className="float-left"
+    >
+      Sign Up
+    </h2>
+    <form
+      className="center"
+      id="signUpForm"
+      method="POST"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <div
+              className="row"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_box
+              </i>
+              <input
+                className="signup-input-height"
+                id="fullname"
+                name="fullname"
+                onChange={[MockFunction]}
+                placeholder="Full Name"
+                required={true}
+                type="text"
+                value="fakunlesamuel@gmail.com"
+              />
+              <label
+                id="fullNameLabel"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <div
+              className="row"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                email
+              </i>
+              <input
+                className="signup-input-height"
+                id="email"
+                name="email"
+                onChange={[MockFunction]}
+                placeholder="Email"
+                required={true}
+                type="email"
+                value="fakunlesamuel@gmail.com"
+              />
+              <label
+                id="emailLabel"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <div
+              className="row"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_circle
+              </i>
+              <input
+                className="signup-input-height"
+                id="password"
+                name="password"
+                onChange={[MockFunction]}
+                placeholder="Password"
+                required={true}
+                type="password"
+                value="Lifeisarace"
+              />
+              <label
+                id="passwordLabel"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <div
+              className="row"
+            >
+              <i
+                className="material-icons prefix"
+              >
+                account_circle
+              </i>
+              <input
+                className="signup-input-height"
+                id="confirmPassword"
+                name="confirmPassword"
+                onChange={[MockFunction]}
+                placeholder="Confirm Password"
+                required={true}
+                type="password"
+                value="Lifeisarace"
+              />
+              <label
+                id="confirmPasswordLabel"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="input col col-1"
+          >
+            <button
+              className="btn-signup"
+              onClick={[MockFunction]}
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+        <br />
+      </div>
+    </form>
+  </div>
+</div>
+`;

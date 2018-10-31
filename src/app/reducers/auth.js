@@ -2,14 +2,17 @@ import isEmpty from 'is-empty';
 import {
   SET_CURRENT_USER,
   SIGN_UP_ERRORS,
-  SET_CURRENT_USER_FAIL
+  SET_CURRENT_USER_FAIL,
+  SET_CURRENT_USER_ERROR,
+  SIGNOUT_USER
 } from '../actions/types';
 
 
 const initialState = {
   isAuthenticated: false,
   user: {},
-  error: {}
+  error: {},
+  errors: {}
 };
 
 export default (state = initialState, action) => {
@@ -29,6 +32,12 @@ export default (state = initialState, action) => {
         error: action.error
       };
 
+    case SET_CURRENT_USER_ERROR:
+      return {
+        ...state,
+        error: action.error
+      };
+
     case SIGN_UP_ERRORS:
       return {
         ...state,
@@ -36,7 +45,7 @@ export default (state = initialState, action) => {
         error: action.error
       };
       
-    case 'LOGOUT_USER':
+    case SIGNOUT_USER:
       return {
         ...state,
         ...initialState

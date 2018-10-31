@@ -13,17 +13,11 @@ const initialState = {
  */
 export default function requestReducer(state = initialState, action) {
   switch (action.type) {
-    // case types.CREATE_COMMENT_SUCCESSFUL:
-    //   return {
-    //     ...state,
-    //     comments: {
-    //       comments: [action.comment.comment,
-    //         ...state.comments.comments],
-    //       paginationMeta:
-    //       Object.assign(state.comments.paginationMeta,
-    //         { totalCount: state.comments.paginationMeta.totalCount + 1 })
-    //     }
-    //   };
+    case types.CREATE_REQUEST_SUCCESSFUL:
+      return {
+        ...state,
+        requests: [action.request, ...state.requests],
+      };
     // case types.UPDATE_COMMENT_SUCCESSFUL:
     //   return {
     //     ...state,

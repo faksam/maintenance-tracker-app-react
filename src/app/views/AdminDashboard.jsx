@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import isEmpty from 'is-empty';
 
 import { loadRequests } from '../actions/request.actions';
+import signoutUser from '../actions/signout.actions';
 
 import ViewRequest from '../components/request/ViewRequest';
-import DisplayRequests from '../components/request/DisplayRequests';
 import RequestRow from '../components/request/RequestRow';
 import maintenanceLogo from '../../images/maintenance.png';
 
 export class Dashboard extends Component {
     state = {
         dated: '',
+        title: '',
+        description: '',
         status: '',
         category: '',
         isLoading: true,
@@ -29,27 +30,34 @@ export class Dashboard extends Component {
     let currentUser = {
       url: 'requests'
     };
-    if (user.role === 'Admin') {
-        user.url = 'requests';
-      }
     loadRequestsAction(currentUser);
   }
-  viewClickedRequest = request => e => {
+
+  viewClickedRequest = (request) => e => {
     this.setState({
         showViewRequest: true,
         request
     });
   }
-  hideClickedRequest = e => {
+
+  hideModalRequest = e => {
     e.preventDefault();
     this.setState({
         showViewRequest: false,
         request: {},
     });
   }
+  handleSignOut = event => {
+    event.preventDefault();
+    const { signoutUserAction } = this.props;
+    signoutUserAction();
+  }
     render() {
-        const { showViewRequest, request } = this.state;
-        const { requests } = this.props;
+        const { showViewRequest, request, title, description } = this.state;
+        const { requests, user, history } = this.props;
+        if (user.role !== 'Admin') {
+          history.push('/');
+        }
         return (
             <div>
                 <div className="main-container">
@@ -82,7 +90,7 @@ export class Dashboard extends Component {
                                             </ul>
                                         </li>
                                         <li>
-                                            <a id="signoutButton" href="./index.html">Sign Out</a>
+                                            <a id="signoutButton" onClick={this.handleSignOut}>Sign Out</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -138,7 +146,7 @@ export class Dashboard extends Component {
                         </div>  <br />
                         <br />
                     </div>
-                    {showViewRequest && <ViewRequest showViewRequest={showViewRequest} hideClickedRequest={this.hideClickedRequest} request={request} />}
+                    {showViewRequest && <ViewRequest showViewRequest={showViewRequest} hideModalRequest={this.hideModalRequest} request={request} />}
                 
 
                 <br />
@@ -166,8 +174,9 @@ export class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-    loadRequestsAction: PropTypes.func.isRequired,
-    request: PropTypes.shape({}),
+  signoutUserAction: PropTypes.func.isRequired,
+  loadRequestsAction: PropTypes.func.isRequired,
+  request: PropTypes.shape({}),
 };
 
 const mapStateToProps = state => ({
@@ -179,6 +188,7 @@ const mapStateToProps = state => ({
 
 const matchDispatchToProps = dispatch => bindActionCreators({
     loadRequestsAction: loadRequests,
+    signoutUserAction: signoutUser,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(Dashboard);
