@@ -18,28 +18,6 @@ export default function requestReducer(state = initialState, action) {
         ...state,
         requests: [action.request, ...state.requests],
       };
-    // case types.UPDATE_COMMENT_SUCCESSFUL:
-    //   return {
-    //     ...state,
-    //     comments: {
-    //       comments:
-    //       state.comments.comments.map(comment => (comment.id === action.comment.id
-    //         ? action.comment.comment : comment)),
-    //       paginationMeta: state.comments.paginationMeta
-    //     }
-    //   };
-
-    // case types.DELETE_COMMENT_SUCCESSFUL:
-    //   return {
-    //     ...state,
-    //     comments: {
-    //       comments:
-    //       state.comments.comments.filter(comment => comment !== action.comment),
-    //       paginationMeta:
-    //       Object.assign(state.comments.paginationMeta,
-    //         { totalCount: state.comments.paginationMeta.totalCount - 1 })
-    //     }
-    //   };
     case types.LOAD_REQUESTS_SUCCESSFUL:
       return {
         ...state,

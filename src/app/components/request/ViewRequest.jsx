@@ -27,21 +27,6 @@ export class ViewRequest extends Component {
     };
   }
 
-  onChange = (event) => {
-    const { errors } = this.state;
-    if (errors[event.target.id]) {
-      const newErrors = Object.assign({}, errors);
-      delete newErrors[event.target.id];
-      this.setState({
-        [event.target.id]: event.target.value, errors: newErrors
-      });
-    } else {
-      this.setState({
-        [event.target.id]: event.target.value
-      });
-    }
-  }
-
   handleCloseError = () => {
     this.setState({
       error: '',

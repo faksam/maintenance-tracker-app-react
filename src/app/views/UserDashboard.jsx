@@ -13,63 +13,62 @@ import RequestForm from '../components/request/RequestForm';
 import maintenanceLogo from '../../images/maintenance.png';
 
 export class Dashboard extends Component {
-    state = {
-        title: '',
-        description: '',
-        dated: '',
-        status: '',
-        category: '',
-        isLoading: true,
-        filterMessage: '',
-        noRequestMessage: '',
-        request: {},
-        showViewRequest: false,
-        showRequestForm: false,
-    };
+state = {
+  title: '',
+  description: '',
+  request: {},
+  showViewRequest: false,
+  showRequestForm: false,
+};
 
 
     componentDidMount = () => {
-        const { loadRequestsAction, user } = this.props;
-        let currentUser = {
-            url: 'users/requests'
-        };
-        loadRequestsAction(currentUser);
+      const { loadRequestsAction, user } = this.props;
+      const currentUser = {
+        url: 'users/requests'
+      };
+      loadRequestsAction(currentUser);
     }
-    viewClickedRequest = request => e => {
-        this.setState({
-            showViewRequest: true,
-            request
-        });
+
+    viewClickedRequest = request => (e) => {
+      this.setState({
+        showViewRequest: true,
+        request
+      });
     }
 
     hideModalRequest = () => {
-        this.setState({
-            showViewRequest: false,
-            showRequestForm: false,
-            request: {},
-        });
+      this.setState({
+        showViewRequest: false,
+        showRequestForm: false,
+        request: {},
+      });
     }
 
-    handleCreateRequest = event => {
-        event.preventDefault();
-        this.setState({
-            showRequestForm: true,
-            request: {},
-        });
+    handleCreateRequest = (event) => {
+      event.preventDefault();
+      this.setState({
+        showRequestForm: true,
+        request: {},
+      });
     }
-    handleSignOut = event => {
-        event.preventDefault();
-        const { signoutUserAction } = this.props;
-        signoutUserAction();
+
+    handleSignOut = (event) => {
+      event.preventDefault();
+      const { signoutUserAction } = this.props;
+      signoutUserAction();
     }
+
     render() {
-        const { showViewRequest, request, showRequestForm, title, description } = this.state;
-        const { requests } = this.props;
+      const {
+ showViewRequest, request, showRequestForm, title, description 
+} = this.state;
+      const { requests } = this.props;
 
-        return (
-            <div>
-                <div className="main-container">
-                    <div className="row">
+      return (
+          <div>
+              <div className="main-container">
+                <div className="row">
                         <section className="navigation">
                             <div className="nav-container">
                                 <div className="brand">
@@ -178,29 +177,31 @@ export class Dashboard extends Component {
                             </p>
                         </div>
                     </div>
-                </div></div>
-        )
+                </div>
+
+            </div>
+      );
     }
 }
 
 Dashboard.propTypes = {
-    signoutUserAction: PropTypes.func.isRequired,
-    loadRequestsAction: PropTypes.func.isRequired,
-    createRequestAction: PropTypes.func.isRequired,
-    request: PropTypes.shape({}),
+  signoutUserAction: PropTypes.func.isRequired,
+  loadRequestsAction: PropTypes.func.isRequired,
+  createRequestAction: PropTypes.func.isRequired,
+  request: PropTypes.shape({}),
 };
 
 const mapStateToProps = state => ({
-    error: state.auth.error,
-    auth: state.auth.isAuthenticated,
-    user: state.auth.user,
-    requests: state.requestReducer.requests,
+  error: state.auth.error,
+  auth: state.auth.isAuthenticated,
+  user: state.auth.user,
+  requests: state.requestReducer.requests,
 });
 
 const matchDispatchToProps = dispatch => bindActionCreators({
-    loadRequestsAction: loadRequests,
-    createRequestAction: createRequest,
-    signoutUserAction: signoutUser,
+  loadRequestsAction: loadRequests,
+  createRequestAction: createRequest,
+  signoutUserAction: signoutUser,
 }, dispatch);
 
 export default connect(mapStateToProps, matchDispatchToProps)(Dashboard);

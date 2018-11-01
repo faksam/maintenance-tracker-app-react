@@ -2,15 +2,18 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import AuthForms from '../../../app/components/auth/AuthForms';
+import ConnectedAuthForm, { AuthForm } from '../../../app/components/auth/AuthForms';
 
 const props = {
   fullname: 'fakunlesamuel@gmail.com',
   email: 'fakunlesamuel@gmail.com',
   password: 'Lifeisarace',
   confirmPassword: 'Lifeisarace',
+  handleSignIn: jest.fn(),
   handleSignUp: jest.fn(),
   handleChange: jest.fn(),
+  signUpUser: jest.fn(),
+  signInUser: jest.fn(),
 };
 const initialState = {
   auth: {
@@ -29,57 +32,62 @@ const initialState = {
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
 
-describe('SignInTabForm Component', () => {
+describe('AuthForm Component', () => {
+  it('should a new comment', () => {
+    const wrapper = shallow(<AuthForm {...props} />);
+    const instance = wrapper.instance();
+    const e = {
+      preventDefault: jest.fn()
+    };
+    // expect(instance.isValid()).toBe(true);
+    wrapper.setState({
+      fullname: 'fakunlesamuel@gmail.com',
+      email: 'fakunlesamuel@gmail.com',
+      password: 'Lifeisarace',
+      confirmPassword: 'Lifeisarace',
+      accountEmail: 'fakunlesamuel@gmail.com',
+    });
+    instance.handleSignIn(e);
+    instance.handleSignUp(e);
+    instance.handleCloseError();
+  });
   it('should render without throwing an error', () => {
-    const wrapper = shallow(<AuthForms store={store} {...props} />);
+    const wrapper = shallow(<AuthForm store={store} {...props} />);
+    expect(wrapper.exists()).toBe(true);
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should render without throwing an error', () => {
+    const wrapper = shallow(<AuthForm store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
   it('should set state to props', () => {
-    const wrapper = shallow(<AuthForms store={store} {...props} />);
-    expect(wrapper.state()).toEqual({});
+    const wrapper = shallow(<AuthForm store={store} {...props} />);
+    expect(wrapper.state()).toEqual({
+      fullname: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      accountEmail: '',
+      errors: {},
+      accountPassword: '',
+    });
   });
-  // it('should not create an empty article', () => {
-  //   const wrapper = shallow(<CommentForm {...props} />);
-  //   const instance = wrapper.instance();
-  //   const event = {
-  //     preventDefault: jest.fn()
-  //   };
-  //   wrapper.setState({ body: '' });
-  //   expect(instance.isValid()).toBe(false);
-  //   instance.onSubmit(event);
-  // });
-  // it('should a new comment', () => {
-  //   const wrapper = shallow(<CommentForm {...props} />);
-  //   const instance = wrapper.instance();
-  //   const event = {
-  //     preventDefault: jest.fn()
-  //   };
-  //   wrapper.setState({ body: 'Samuel is a boy' });
-  //   expect(instance.isValid()).toBe(true);
-  //   instance.onSubmit(event);
-  // });
-  // it('should close error alert', () => {
-  //   const wrapper = shallow(<CommentForm {...props} />);
-  //   const instance = wrapper.instance();
-  //   instance.handleCloseError();
-  // });
-  // it('should set comment body when comment form body changes', () => {
-  //   const wrapper = shallow(<CommentForm {...props} />);
-  //   const event = {
-  //     preventDefault: jest.fn(),
-  //     target: {
-  //       id: 'body',
-  //       value: 'This is a comment'
-  //     }
-  //   };
-  //   wrapper.setState({ errors: { [event.target.id]: 'mock' } });
-  //   wrapper.instance().onChange(event);
-  //   expect(wrapper.instance().state[event.target.id])
-  //     .toBe(event.target.value);
-  // });
-  // it('should set state to props', () => {
-  //   const wrapper = shallow(<ConnectedCommentForm store={store} {...props} />);
-  //   expect(wrapper.state()).toEqual({});
-  // });
+  it('should a new comment', () => {
+    const wrapper = shallow(<AuthForm {...props} />);
+    const instance = wrapper.instance();
+    const e = {
+      preventDefault: jest.fn()
+    };
+    wrapper.setState({
+      fullname: 'fakunlesamuel@gmail.com',
+      email: 'fakunlesamuel@gmail.com',
+      password: 'Lifeisarace',
+      confirmPassword: 'Lifeisarace',
+      accountEmail: 'fakunlesamuel@gmail.com',
+    });
+    instance.handleSignIn(e);
+    instance.handleSignUp(e);
+    instance.handleCloseError();
+  });
 });

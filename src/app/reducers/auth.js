@@ -44,7 +44,7 @@ export default (state = initialState, action) => {
         isAuthenticated: false,
         error: action.error
       };
-      
+
     case SIGNOUT_USER:
       return {
         ...state,

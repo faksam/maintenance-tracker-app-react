@@ -1,56 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInTabForm Component should render without throwing an error 1`] = `
-<AuthForm
-  auth={true}
-  confirmPassword="Lifeisarace"
-  email="fakunlesamuel@gmail.com"
-  error={Object {}}
-  fullname="fakunlesamuel@gmail.com"
-  handleChange={[MockFunction]}
-  handleSignUp={[MockFunction]}
-  password="Lifeisarace"
-  signInUser={[Function]}
-  signUpUser={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  user={
-    Object {
-      "email": "joeeasy@gmail.com",
-      "iat": 1540985284931,
-      "id": "6bf54873-6033-4ab0-855d-336a34e1dfbc",
-      "role": "User",
-      "username": "joeeasy",
-    }
-  }
-/>
+exports[`AuthForm Component should render without throwing an error 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="tab col col-1"
+  >
+    <button
+      className="tablinks sign-tab"
+      id="signUpTab"
+      type="button"
+    >
+      Sign Up
+    </button>
+    <button
+      className="tablinks sign-tab"
+      id="signInTab"
+      type="button"
+    >
+      Sign In
+    </button>
+  </div>
+  <div
+    id="loginErrorDiv"
+  >
+    <p
+      className="hide-div"
+      id="loginErrorMessage"
+    />
+  </div>
+  <div
+    id="errorDiv"
+  >
+    <p
+      className="hide-div"
+      id="signupErrorMessage"
+    />
+  </div>
+  <div
+    className="tabcontent center"
+    id="signInTabForm"
+  >
+    <SignInTabForm
+      accountEmail=""
+      accountPassword=""
+      handleChange={[Function]}
+      handleSignIn={[Function]}
+    />
+  </div>
+  <div
+    className="tabcontent"
+    id="signUpTabForm"
+  >
+    <SignUpTabForm
+      confirmPassword=""
+      email=""
+      fullname=""
+      handleChange={[Function]}
+      handleSignUp={[Function]}
+      password=""
+    />
+  </div>
+</div>
+`;
+
+exports[`AuthForm Component should render without throwing an error 2`] = `
+<div
+  className="row"
+>
+  <div
+    className="tab col col-1"
+  >
+    <button
+      className="tablinks sign-tab"
+      id="signUpTab"
+      type="button"
+    >
+      Sign Up
+    </button>
+    <button
+      className="tablinks sign-tab"
+      id="signInTab"
+      type="button"
+    >
+      Sign In
+    </button>
+  </div>
+  <div
+    id="loginErrorDiv"
+  >
+    <p
+      className="hide-div"
+      id="loginErrorMessage"
+    />
+  </div>
+  <div
+    id="errorDiv"
+  >
+    <p
+      className="hide-div"
+      id="signupErrorMessage"
+    />
+  </div>
+  <div
+    className="tabcontent center"
+    id="signInTabForm"
+  >
+    <SignInTabForm
+      accountEmail=""
+      accountPassword=""
+      handleChange={[Function]}
+      handleSignIn={[Function]}
+    />
+  </div>
+  <div
+    className="tabcontent"
+    id="signUpTabForm"
+  >
+    <SignUpTabForm
+      confirmPassword=""
+      email=""
+      fullname=""
+      handleChange={[Function]}
+      handleSignUp={[Function]}
+      password=""
+    />
+  </div>
+</div>
 `;

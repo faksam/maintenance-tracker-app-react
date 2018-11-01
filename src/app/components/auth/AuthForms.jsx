@@ -42,14 +42,6 @@ export class AuthForm extends Component {
     };
   }
 
-  /**
-   * When react component is mounted
-   * @returns {void}
-   */
-  componentDidMount() {
-    this.openForm('signUpTabForm');
-  }
-
   static getDerivedStateFromProps(nextProps) {
     const { auth, history, user } = nextProps;
     if (auth && user.role === 'User') {
@@ -114,33 +106,6 @@ export class AuthForm extends Component {
       signUpUser(validatedInput);
     }
   }
-
-  openForm = (formName) => {
-    let i;
-    const tabcontent = document.getElementsByClassName('tabcontent');
-    for (i = 0; i < tabcontent.length; i += 1) {
-      tabcontent[i].style.display = 'none';
-    }
-    const tablinks = document.getElementsByClassName('tablinks');
-    for (i = 0; i < tablinks.length; i += 1) {
-      tablinks[i].className = tablinks[i].className.replace(' active', '');
-    }
-    document.getElementById(formName).style.display = 'block';
-    if (formName === 'signInTabForm') {
-      document.getElementById('signInTab').className += ' active';
-    } else {
-      document.getElementById('signUpTab').className += ' active';
-    }
-    // evt.currentTarget.className += " active";
-    this.clearErrorText();
-    this.clearErrorLoginText();
-  };
-
-  handleCloseError = () => {
-    this.setState({
-      errors: {}
-    });
-  };
 
   handleCloseError = () => {
     this.setState({
