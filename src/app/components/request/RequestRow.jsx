@@ -8,38 +8,9 @@ const RequestRow = ({ request, showViewRequest, viewClickedRequest }) => {
       <td>{request.title}</td>
       <td colSpan="2">{request.description}</td>
       <td>{request.status}</td>
-      <td colSpan="2">{moment(request.date).fromNow()}</td>
-      {
-        request.status === 'New'
-          ? (
-            <td>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <button
-                        type="button"
-                        id={request.id}
-                      >
-                        <i className="material-icons">edit</i>
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="danger"
-                        id={request.id}
-                      >
-                        <i className="material-icons">delete</i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          )
-          : ''
-      }
+      <td colSpan="3">{moment(request.date).fromNow()}</td>
+      <td />
+      <td />
     </tr>
   );
 };

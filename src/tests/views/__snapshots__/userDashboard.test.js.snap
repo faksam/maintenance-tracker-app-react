@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInTabForm Component should render without throwing an error 1`] = `
+exports[`Dashboard Component should render without throwing an error 1`] = `
 <div>
   <div
     className="main-container"
@@ -19,14 +19,15 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
           >
             <a
               className="dashboard-logo"
-              href="./homepage.html"
+              href="/"
             >
               <img
                 alt="Logo"
                 className="logo-font"
                 src={Object {}}
               />
-                 M-T-A
+               
+                M-T-A
             </a>
           </div>
           <nav>
@@ -34,21 +35,23 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
               className="nav-mobile"
             >
               <a
+                className=""
                 href="#!"
                 id="nav-toggle"
+                onClick={[Function]}
               >
                 <span />
               </a>
             </div>
             <ul
-              className="nav-list"
+              className="display-none"
             >
               <li
                 className="hide-div"
                 id="adminhomepage"
               >
                 <a
-                  href="/"
+                  href="#"
                 >
                   Home
                 </a>
@@ -71,7 +74,7 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
                   </li>
                   <li>
                     <a
-                      href="./user_account.html"
+                      href="#"
                     >
                       My Account
                     </a>
@@ -188,7 +191,7 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
                 Date
               </th>
               <th
-                colSpan="2"
+                colSpan="3"
               >
                 Edit/Delete
               </th>
@@ -486,7 +489,7 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
 </div>
 `;
 
-exports[`SignInTabForm Component should render without throwing an error 2`] = `
+exports[`Dashboard Component should render without throwing an error when connected 1`] = `
 <Dashboard
   auth={true}
   confirmPassword="Lifeisarace"

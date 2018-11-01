@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { createRequest } from '../../actions/request.actions';
+import UserInputValidation from '../../validator/requestValidator';
 
 /**
  * @class RequestForm
@@ -27,6 +28,7 @@ export class RequestForm extends Component {
       title: '',
       description: '',
       errors: {},
+      errorDivClass: 'display-none',
     };
   }
 
@@ -50,18 +52,26 @@ export class RequestForm extends Component {
     const { createRequestAction, hideModalRequest } = this.props;
     const { title, description } = this.state;
 
-    this.setState({
-      errors: {},
-      description: '',
-      title: '',
-    });
-
-    hideModalRequest();
-
     const newRequest = {
       title, description
     };
-    createRequestAction(newRequest);
+
+    const { errors, isValid } = UserInputValidation.requestValidation(newRequest);
+
+    if (isValid) {
+      this.setState({
+        errors: {},
+        description: '',
+        title: '',
+      });
+      createRequestAction(newRequest);
+      hideModalRequest();
+    } else {
+      this.setState({
+        errors,
+        errorDivClass: 'display-block',
+      });
+    }
   }
 
   handleCloseError = () => {
@@ -80,7 +90,7 @@ export class RequestForm extends Component {
    * @description Render the JSX template
    */
   render() {
-    const { title, description, closeModal } = this.state;
+    const { title, description, closeModal, errors, errorDivClass } = this.state;
     const { request, showRequestForm, hideModalRequest } = this.props;
 
     const showHideClassName = showRequestForm && closeModal ? 'display-block-modal' : 'modal';
@@ -115,6 +125,14 @@ export class RequestForm extends Component {
                           placeholder="Request Title"
                           required
                         />
+                        <div id="errorDiv" className={errorDivClass}>
+                          {
+                            errors.title
+                              ? (<p key="email" className="danger">{errors.title}</p>)
+                              : ''
+                          }
+                          <p id="signupErrorMessage" className="hide-div" />
+                        </div>
                       </div>
                     </div>
                     <div className="row">
@@ -129,6 +147,14 @@ export class RequestForm extends Component {
                           className="desc-txt-area"
                           required
                         />
+                        <div id="errorDiv" className={errorDivClass}>
+                          {
+                            errors.description
+                              ? (<p key="email" className="danger">{errors.description}</p>)
+                              : ''
+                          }
+                          <p id="signupErrorMessage" className="hide-div" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -160,8 +186,12 @@ RequestForm.propTypes = {
   showRequestForm: PropTypes.bool,
 };
 
+const mapStateToProps = state => ({
+
+});
+
 const matchDispatchToProps = dispatch => bindActionCreators({
   createRequestAction: createRequest,
 }, dispatch);
 
-export default connect(matchDispatchToProps)(RequestForm);
+export default connect(mapStateToProps, matchDispatchToProps)(RequestForm);

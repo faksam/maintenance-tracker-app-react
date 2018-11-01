@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
 /**
  * @class ViewRequest
@@ -55,24 +56,24 @@ export class ViewRequest extends Component {
           <div className="modal-body">
             <div className="row left">
               <div className="container">
-                <br />
                 <div className="col col-1">
-                  <div className="row">
-                    <h2>
-                      <b>Request title: </b>
+                  <div className="row overflow">
+                    <h2 className="center">
+                      <b>Request</b>
                     </h2>
-                    <h3 id="viewRequestTitle">
-                      <b>{request.title}</b>
-                    </h3>
-                    <hr />
+                    <hr className="style14" />
                     <h2>
-                      <b>Request content:</b>
+                      <b>Title: </b>
+                    </h2>
+                    <h3 id="viewRequestTitle">{request.title}</h3>
+                    <h2>
+                      <b>Description:</b>
                     </h2>
                     <h3 id="viewRequestDescription">{request.description}</h3>
                     <h2>
-                      <b>Request date:</b>
+                      <b>Date:</b>
                     </h2>
-                    <h3 id="viewRequestDate">{request.date}</h3>
+                    <h3 id="viewRequestDate">{moment(request.date).format('MMM D, YYYY')}</h3>
                     <h2>
                       <b>Status:</b>
                     </h2>

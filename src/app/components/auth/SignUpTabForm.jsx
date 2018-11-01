@@ -11,7 +11,8 @@ import { bindActionCreators } from 'redux';
  *
  */
 const SignUpTabForm = ({
-  handleSignUp, fullname, email, password, confirmPassword, handleChange
+  handleSignUp, fullname, email, password, confirmPassword, handleChange,
+  errorDivClass, errors
 }) => (
       <div>
         <div className="container">
@@ -22,6 +23,7 @@ const SignUpTabForm = ({
                   <div className="input col col-1">
                     <div className="row">
                       <i className="material-icons prefix">account_box</i>
+                      &nbsp;
                       <input
                         className="signup-input-height"
                         id="fullname" name="fullname"
@@ -31,7 +33,13 @@ const SignUpTabForm = ({
                         onChange={handleChange}
                         required
                       />
-                      <label id="fullNameLabel"></label>
+                      <div id="errorDiv" className={errorDivClass}>
+                        {
+                          errors.fullname ? (<p key="email" className="danger">{errors.fullname}</p>)
+                            : ''
+                        }
+                        <p id="signupErrorMessage" className="hide-div" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -39,6 +47,7 @@ const SignUpTabForm = ({
                   <div className="input col col-1">
                     <div className="row">
                       <i className="material-icons prefix">email</i>
+                      &nbsp;
                       <input
                         className="signup-input-height"
                         id="email"
@@ -47,8 +56,16 @@ const SignUpTabForm = ({
                         placeholder="Email"
                         value={email}
                         onChange={handleChange}
-                        required />
-                      <label id="emailLabel"></label>
+                        required
+                      />
+                      <div id="errorDiv" className={errorDivClass}>
+                        {
+                          errors.email
+                            ? (<p key="email" className="danger">{errors.email}</p>)
+                            : ''
+                        }
+                        <p id="signupErrorMessage" className="hide-div" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -56,6 +73,7 @@ const SignUpTabForm = ({
                   <div className="input col col-1">
                     <div className="row">
                       <i className="material-icons prefix">account_circle</i>
+                      &nbsp;
                       <input
                         className="signup-input-height"
                         id="password"
@@ -66,7 +84,14 @@ const SignUpTabForm = ({
                         value={password}
                         required
                       />
-                      <label id="passwordLabel"></label>
+                      <div id="errorDiv" className={errorDivClass}>
+                        {
+                          errors.password
+                            ? (<p key="email" className="danger">{errors.password}</p>)
+                            : ''
+                        }
+                        <p id="signupErrorMessage" className="hide-div" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -74,6 +99,7 @@ const SignUpTabForm = ({
                   <div className="input col col-1">
                     <div className="row">
                       <i className="material-icons prefix">account_circle</i>
+                      &nbsp;
                       <input
                         className="signup-input-height"
                         id="confirmPassword"
@@ -82,14 +108,22 @@ const SignUpTabForm = ({
                         type="password"
                         onChange={handleChange}
                         placeholder="Confirm Password"
-                        required />
-                      <label id="confirmPasswordLabel"></label>
+                        required
+                      />
+                      <div id="errorDiv" className={errorDivClass}>
+                        {
+                          errors.password_confirmation
+                            ? (<p key="password_confirmation" className="danger">{errors.password_confirmation}</p>)
+                            : ''
+                        }
+                        <p id="signupErrorMessage" className="hide-div" />
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input col col-1">
-                    <button className="btn-signup" onClick={handleSignUp}>Sign Up</button>
+                    <button type="button" className="btn-signup" onClick={handleSignUp}>Sign Up</button>
                   </div>
                 </div>
                 <br />
@@ -100,6 +134,8 @@ const SignUpTabForm = ({
     );
 
 SignUpTabForm.propTypes = {
+  errorDivClass: PropTypes.string,
+  errors: PropTypes.instanceOf(Object),
   handleSignUp: PropTypes.func.isRequired,
   fullname: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,

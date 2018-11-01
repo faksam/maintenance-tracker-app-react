@@ -20,7 +20,7 @@ describe('Login Action', () => {
 
   it('should dispatch SET_CURRENT_USER when login action is successful', (done) => {
     const userDetails = {
-      email: 'lifeis@getMaxListeners.com',
+      email: 'lifeis@gmail.com',
       password: 'lifeisarace'
     };
     moxios.stubRequest(`${config.apiUrl}/auth/login`, {

@@ -14,6 +14,9 @@ export class Dashboard extends Component {
   state = {
     request: {},
     showViewRequest: false,
+    showToggleNav: false,
+    toggleNav: '',
+    displayBlock: 'display-none',
   };
 
 
@@ -40,6 +43,23 @@ export class Dashboard extends Component {
     });
   }
 
+  displayToggleNav = () => {
+    const { showToggleNav } = this.state;
+    if (!showToggleNav) {
+      this.setState({
+        showToggleNav: true,
+        toggleNav: 'active',
+        displayBlock: 'display-block',
+      });
+    } else {
+      this.setState({
+        showToggleNav: false,
+        toggleNav: '',
+        displayBlock: 'display-none',
+      });
+    }
+  }
+
   handleSignOut = (event) => {
     event.preventDefault();
     const { signoutUserAction } = this.props;
@@ -48,7 +68,7 @@ export class Dashboard extends Component {
 
   render() {
     const {
-      showViewRequest, request
+      showViewRequest, request, toggleNav, displayBlock
     } = this.state;
     const {
       requests, user, history
@@ -64,7 +84,7 @@ export class Dashboard extends Component {
             <section className="navigation">
               <div className="nav-container">
                 <div className="brand">
-                  <a className="dashboard-logo" href="./homepage.html">
+                  <a className="dashboard-logo" href="/">
                     <img src={maintenanceLogo} className="logo-font" alt="Logo" />
                     {' '}
 &nbsp; M-T-A
@@ -73,22 +93,22 @@ export class Dashboard extends Component {
                 </div>
                 <nav>
                   <div className="nav-mobile">
-                    <a id="nav-toggle" href="#!">
+                    <a id="nav-toggle" href="#!" onClick={this.displayToggleNav} className={toggleNav}>
                       <span />
                     </a>
                   </div>
-                  <ul className="nav-list">
+                  <ul className={displayBlock}>
                     <li id="adminhomepage" className="hide-div">
-                      <a href="./adminhomepage.html">Home</a>
+                      <a href="#">Home</a>
                     </li>
                     <li>
                       <a href="#!">Account</a>
                       <ul className="nav-dropdown">
                         <li>
-                          <a href="./homepage.html">My Requests</a>
+                          <a href="/dashboard">My Requests</a>
                         </li>
                         <li>
-                          <a href="./user_account.html">My Account</a>
+                          <a href="#">My Account</a>
                         </li>
                       </ul>
                     </li>
@@ -107,11 +127,11 @@ export class Dashboard extends Component {
               <h2 className="center">All Requests</h2>
               <div className="row">
                 <div className="col-m col-1-6-m">
-                  <a>
+                  {/* <a>
                     <button type="button" id="createRequestButton">
                       <i className="material-icons">add</i>
                     </button>
-                  </a>
+                  </a> */}
                 </div>
                 <div className="col-m col-1-2-m">
                   <input id="filterRequestInput" placeholder="Search" />
@@ -135,7 +155,7 @@ export class Dashboard extends Component {
                     <th colSpan="2">Description</th>
                     <th>Status</th>
                     <th colSpan="2">Date</th>
-                    <th colSpan="2">Edit/Delete</th>
+                    <th colSpan="3"></th>
                   </tr>
                 </thead>
                 <tbody id="requestTableBody">

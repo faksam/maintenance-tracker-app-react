@@ -54,7 +54,7 @@ describe('SignInTabForm Component', () => {
     const wrapper = shallow(<ConnectedRequestForm store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
   });
-  it('should a new comment', () => {
+  it('should a create new request form', () => {
     const wrapper = shallow(<RequestForm store={store} {...props} />);
     const instance = wrapper.instance();
     const event = {
@@ -66,7 +66,7 @@ describe('SignInTabForm Component', () => {
     });
     instance.onSubmit(event);
   });
-  it('should a new comment', () => {
+  it('should a simulate typing', () => {
     const wrapper = shallow(<RequestForm store={store} {...props} />);
     const instance = wrapper.instance();
     const event = {

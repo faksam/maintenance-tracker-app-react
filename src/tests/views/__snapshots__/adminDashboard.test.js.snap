@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInTabForm Component should render without throwing an error 1`] = `
+exports[`Dashboard Component should render without throwing an error 1`] = `
 <div>
   <div
     className="main-container"
@@ -19,7 +19,7 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
           >
             <a
               className="dashboard-logo"
-              href="./homepage.html"
+              href="/"
             >
               <img
                 alt="Logo"
@@ -35,21 +35,23 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
               className="nav-mobile"
             >
               <a
+                className=""
                 href="#!"
                 id="nav-toggle"
+                onClick={[Function]}
               >
                 <span />
               </a>
             </div>
             <ul
-              className="nav-list"
+              className="display-none"
             >
               <li
                 className="hide-div"
                 id="adminhomepage"
               >
                 <a
-                  href="./adminhomepage.html"
+                  href="#"
                 >
                   Home
                 </a>
@@ -65,14 +67,14 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
                 >
                   <li>
                     <a
-                      href="./homepage.html"
+                      href="/dashboard"
                     >
                       My Requests
                     </a>
                   </li>
                   <li>
                     <a
-                      href="./user_account.html"
+                      href="#"
                     >
                       My Account
                     </a>
@@ -109,20 +111,7 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
         >
           <div
             className="col-m col-1-6-m"
-          >
-            <a>
-              <button
-                id="createRequestButton"
-                type="button"
-              >
-                <i
-                  className="material-icons"
-                >
-                  add
-                </i>
-              </button>
-            </a>
-          </div>
+          />
           <div
             className="col-m col-1-2-m"
           >
@@ -189,10 +178,8 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
                 Date
               </th>
               <th
-                colSpan="2"
-              >
-                Edit/Delete
-              </th>
+                colSpan="3"
+              />
             </tr>
           </thead>
           <tbody
@@ -487,10 +474,11 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
 </div>
 `;
 
-exports[`SignInTabForm Component should render without throwing an error 2`] = `
+exports[`Dashboard Component should render without throwing an error when connected to store 1`] = `
 <Dashboard
   auth={true}
   confirmPassword="Lifeisarace"
+  displayBlock="display-none"
   email="fakunlesamuel@gmail.com"
   error={Object {}}
   fullname="fakunlesamuel@gmail.com"
@@ -661,6 +649,7 @@ exports[`SignInTabForm Component should render without throwing an error 2`] = `
       },
     ]
   }
+  showToggleNav={false}
   signoutUserAction={[Function]}
   store={
     Object {
@@ -693,6 +682,7 @@ exports[`SignInTabForm Component should render without throwing an error 2`] = `
       "unsubscribe": [Function],
     }
   }
+  toggleNav=""
   user={
     Object {
       "email": "joeeasy@gmail.com",

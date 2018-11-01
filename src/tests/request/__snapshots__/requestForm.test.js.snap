@@ -4,7 +4,6 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
 <RequestForm
   confirmPassword="Lifeisarace"
   createRequestAction={[Function]}
-  dispatch={[Function]}
   email="fakunlesamuel@gmail.com"
   fullname="fakunlesamuel@gmail.com"
   handleChange={[MockFunction]}
@@ -129,6 +128,15 @@ exports[`SignInTabForm Component should render without throwing an error 2`] = `
                     type="text"
                     value=""
                   />
+                  <div
+                    className="display-none"
+                    id="errorDiv"
+                  >
+                    <p
+                      className="hide-div"
+                      id="signupErrorMessage"
+                    />
+                  </div>
                 </div>
               </div>
               <div
@@ -148,6 +156,15 @@ exports[`SignInTabForm Component should render without throwing an error 2`] = `
                     rows="5"
                     value=""
                   />
+                  <div
+                    className="display-none"
+                    id="errorDiv"
+                  >
+                    <p
+                      className="hide-div"
+                      id="signupErrorMessage"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

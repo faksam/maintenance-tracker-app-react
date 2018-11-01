@@ -47,7 +47,7 @@ const initialState = {
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
 
-describe('SignInTabForm Component', () => {
+describe('LandingPage', () => {
   it('should render without throwing an error', () => {
     const wrapper = shallow(<LandingPage {...props} />);
     expect(wrapper.exists()).toBe(true);

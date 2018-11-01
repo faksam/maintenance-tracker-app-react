@@ -93,27 +93,33 @@ exports[`SignInTabForm Component should render without throwing an error 2`] = `
         <div
           className="container"
         >
-          <br />
           <div
             className="col col-1"
           >
             <div
-              className="row"
+              className="row overflow"
             >
+              <h2
+                className="center"
+              >
+                <b>
+                  Request
+                </b>
+              </h2>
+              <hr
+                className="style14"
+              />
               <h2>
                 <b>
-                  Request title: 
+                  Title: 
                 </b>
               </h2>
               <h3
                 id="viewRequestTitle"
-              >
-                <b />
-              </h3>
-              <hr />
+              />
               <h2>
                 <b>
-                  Request content:
+                  Description:
                 </b>
               </h2>
               <h3
@@ -121,12 +127,14 @@ exports[`SignInTabForm Component should render without throwing an error 2`] = `
               />
               <h2>
                 <b>
-                  Request date:
+                  Date:
                 </b>
               </h2>
               <h3
                 id="viewRequestDate"
-              />
+              >
+                Nov 1, 2018
+              </h3>
               <h2>
                 <b>
                   Status:

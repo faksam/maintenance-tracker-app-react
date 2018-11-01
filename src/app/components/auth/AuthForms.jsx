@@ -39,6 +39,11 @@ export class AuthForm extends Component {
       confirmPassword: '',
       accountEmail: '',
       accountPassword: '',
+      signInFormTabContent: 'tabcontent',
+      signUpFormTabContent: 'tabcontent-display',
+      signInTab: 'tablinks sign-tab',
+      signUpTab: 'tablinks sign-tab active',
+      errorDivClass: 'display-none',
     };
   }
 
@@ -70,6 +75,9 @@ export class AuthForm extends Component {
 
   handleSignIn = (event) => {
     event.preventDefault();
+    this.setState({
+      errors: {}
+    });
     const { accountEmail, accountPassword } = this.state;
     const { signInUser } = this.props;
     const userInput = {
@@ -80,11 +88,19 @@ export class AuthForm extends Component {
 
     if (isValid) {
       signInUser(userInput);
+    } else {
+      this.setState({
+        errors,
+        errorDivClass: 'display-block',
+      });
     }
   }
 
   handleSignUp = (event) => {
     event.preventDefault();
+    this.setState({
+      errors: {}
+    });
     const {
       fullname, email, password, confirmPassword
     } = this.state;
@@ -96,6 +112,7 @@ export class AuthForm extends Component {
       password_confirmation: confirmPassword
     };
     const { errors, isValid } = UserInputValidation.signUpInputValidation(userInput);
+
     const validatedInput = {
       fullName: fullname,
       email,
@@ -104,6 +121,11 @@ export class AuthForm extends Component {
     };
     if (isValid) {
       signUpUser(validatedInput);
+    } else {
+      this.setState({
+        errors,
+        errorDivClass: 'display-block',
+      });
     }
   }
 
@@ -111,6 +133,27 @@ export class AuthForm extends Component {
     this.setState({
       errors: {}
     });
+  };
+
+  displayForm = (event) => {
+    event.preventDefault();
+    if (event.target.id === 'signUpTab') {
+      this.setState({
+        signUpTab: 'tablinks sign-tab active',
+        signUpFormTabContent: 'tabcontent-display',
+        signInFormTabContent: 'tabcontent',
+        signInTab: 'tablinks sign-tab',
+        errors: {}
+      });
+    } else {
+      this.setState({
+        signUpTab: 'tablinks sign-tab',
+        signInTab: 'tablinks sign-tab active',
+        signInFormTabContent: 'tabcontent-display',
+        signUpFormTabContent: 'tabcontent',
+        errors: {}
+      });
+    }
   };
 
   /**
@@ -122,12 +165,18 @@ export class AuthForm extends Component {
    */
   render() {
     const {
+      errors,
       email,
       password,
       fullname,
       confirmPassword,
       accountPassword,
-      accountEmail
+      accountEmail,
+      signInFormTabContent,
+      signUpFormTabContent,
+      signUpTab,
+      signInTab,
+      errorDivClass,
     } = this.state;
 
     const {
@@ -140,8 +189,7 @@ export class AuthForm extends Component {
             id="signUpTab"
             type="button"
             onClick={this.displayForm}
-            className="tablinks
-            sign-tab"
+            className={signUpTab}
           >
             Sign Up
           </button>
@@ -149,7 +197,7 @@ export class AuthForm extends Component {
             id="signInTab"
             type="button"
             onClick={this.displayForm}
-            className="tablinks sign-tab"
+            className={signInTab}
           >
             Sign In
           </button>
@@ -157,22 +205,23 @@ export class AuthForm extends Component {
         <div id="loginErrorDiv">
           <p id="loginErrorMessage" className="hide-div" />
         </div>
-        <div id="errorDiv">
-          <p id="signupErrorMessage" className="hide-div" />
-        </div>
         {
           !isEmpty(error) && (<p className="danger">{error.message}</p>)
         }
-        <div id="signInTabForm" className="tabcontent center">
+        <div id="signInTabForm" className={signInFormTabContent}>
           <SignInTabForm
+            errors={errors}
+            errorDivClass={errorDivClass}
             handleChange={this.handleChange}
             handleSignIn={this.handleSignIn}
             accountEmail={accountEmail}
             accountPassword={accountPassword}
           />
         </div>
-        <div id="signUpTabForm" className="tabcontent">
+        <div id="signUpTabForm" className={signUpFormTabContent}>
           <SignUpTabForm
+            errors={errors}
+            errorDivClass={errorDivClass}
             handleChange={this.handleChange}
             handleSignUp={this.handleSignUp}
             fullname={fullname}

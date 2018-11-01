@@ -29,6 +29,7 @@ exports[`AuthForms Component should render without throwing an error 1`] = `
             >
               email
             </i>
+             
             <input
               id="accountEmail"
               name="accountEmail"
@@ -36,8 +37,17 @@ exports[`AuthForms Component should render without throwing an error 1`] = `
               placeholder="Email"
               required={true}
               type="email"
-              value="fakunlesamuel@gmail.com"
+              value=""
             />
+            <div
+              className="display-none"
+              id="errorDiv"
+            >
+              <p
+                className="hide-div"
+                id="signupErrorMessage"
+              />
+            </div>
           </div>
         </div>
         <div
@@ -51,6 +61,7 @@ exports[`AuthForms Component should render without throwing an error 1`] = `
             >
               account_circle
             </i>
+             
             <input
               id="accountPassword"
               name="accountPassword"
@@ -58,8 +69,17 @@ exports[`AuthForms Component should render without throwing an error 1`] = `
               placeholder="Password"
               required={true}
               type="password"
-              value="Lifeisarace"
+              value=""
             />
+            <div
+              className="display-none"
+              id="errorDiv"
+            >
+              <p
+                className="hide-div"
+                id="signupErrorMessage"
+              />
+            </div>
           </div>
         </div>
         <div

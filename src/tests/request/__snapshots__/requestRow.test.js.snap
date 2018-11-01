@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInTabForm Component should render without throwing an error 1`] = `
+exports[`RequestRow Component should render without throwing an error 1`] = `
 <tr>
   <td />
   <td
@@ -8,9 +8,11 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
   />
   <td />
   <td
-    colSpan="2"
+    colSpan="3"
   >
     a few seconds ago
   </td>
+  <td />
+  <td />
 </tr>
 `;

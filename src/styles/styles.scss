@@ -10,7 +10,7 @@ body {
    min-height: 100%;
    position: relative;
 }
-body, input[text], button {
+body, input[text], button, {
   color: rgb(40, 40, 40);
   font-family: 'Rokkitt', 'Cairo', Cambria, Georgia;
 }
@@ -19,6 +19,14 @@ input, textarea, select, button {
   font-size: 1em;
   padding-left: .4em;
   width: 90%;
+  border: 1px solid;
+}
+textarea {
+  height: 2em;
+  font-size: 1em;
+  padding-left: .4em;
+  width: 90%;
+  border: 1px solid rgb(53, 51, 51);
 }
 .main-container {
   min-height: 100vh; /* will cover the 100% of viewport */
@@ -229,8 +237,7 @@ button.danger:hover
 p.danger
 {
   font-weight: bold;
-  background-color: #CB3438;
-  color: #ffffff;
+  color: #CB3438;
 }
 button:disabled {
   background-color: rgb(179, 179, 179);
@@ -660,7 +667,8 @@ only screen and (max-width: 760px),
 		border: none;
 		border-bottom: 1px solid #eee; 
 		position: relative;
-		padding-left: 35%;
+    padding-left: 35%;
+    overflow: hidden;
 	}
 	
 	td:before { 
@@ -764,6 +772,13 @@ div.pagination a:hover {
   /* Style the tab content */
   .tabcontent {
     display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  .tabcontent-display {
+    display: block;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;

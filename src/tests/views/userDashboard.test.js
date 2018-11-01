@@ -51,7 +51,7 @@ const initialState = {
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
 
-describe('SignInTabForm Component', () => {
+describe('Dashboard Component', () => {
   it('should render without throwing an error', () => {
     const wrapper = shallow(<Dashboard store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
@@ -64,10 +64,13 @@ describe('SignInTabForm Component', () => {
       description: '',
       request: {},
       showViewRequest: false,
-      showRequestForm: false
+      showRequestForm: false,
+      showToggleNav: false,
+      toggleNav: '',
+      displayBlock: 'display-none',
     });
   });
-  it('should render without throwing an error', () => {
+  it('should render without throwing an error when connected', () => {
     const wrapper = shallow(<ConnectedDashboard store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
@@ -77,17 +80,16 @@ describe('SignInTabForm Component', () => {
     expect(wrapper.state()).toEqual({});
   });
   it('ComponentDidMount', () => {
-    let wrapper = shallow(<ConnectedDashboard store={store} {...props} />);
-    // expect(props.fetchSingleArticle).toHaveBeenCalled();
+    const wrapper = shallow(<ConnectedDashboard store={store} {...props} />);
+    expect(wrapper.state()).toEqual({});
     expect(props.loadRequestsAction).toHaveBeenCalled();
   });
-  it('should a new comment', () => {
+  it('should view clicked request', () => {
     const wrapper = shallow(<Dashboard {...props} />);
     const instance = wrapper.instance();
     const event = {
       preventDefault: jest.fn()
     };
-    // expect(instance.isValid()).toBe(true);
     instance.viewClickedRequest({}, event);
     instance.handleCreateRequest(event);
     instance.handleSignOut(event);

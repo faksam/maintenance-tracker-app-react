@@ -19,6 +19,9 @@ state = {
   request: {},
   showViewRequest: false,
   showRequestForm: false,
+  showToggleNav: false,
+  toggleNav: '',
+  displayBlock: 'display-none',
 };
 
 
@@ -45,6 +48,23 @@ state = {
       });
     }
 
+    displayToggleNav = () => {
+      const { showToggleNav } = this.state;
+      if (!showToggleNav) {
+        this.setState({
+          showToggleNav: true,
+          toggleNav: 'active',
+          displayBlock: 'display-block',
+        });
+      } else {
+        this.setState({
+          showToggleNav: false,
+          toggleNav: '',
+          displayBlock: 'display-none',
+        });
+      }
+    }
+
     handleCreateRequest = (event) => {
       event.preventDefault();
       this.setState({
@@ -61,125 +81,130 @@ state = {
 
     render() {
       const {
- showViewRequest, request, showRequestForm, title, description 
-} = this.state;
+        showViewRequest, request, showRequestForm, title, description,
+        toggleNav, displayBlock
+      } = this.state;
       const { requests } = this.props;
 
       return (
-          <div>
-              <div className="main-container">
+        <div>
+            <div className="main-container">
                 <div className="row">
-                        <section className="navigation">
-                            <div className="nav-container">
-                                <div className="brand">
-                                    <a className="dashboard-logo" href="./homepage.html">
-                                        <img src={maintenanceLogo} className="logo-font" alt="Logo" /> &nbsp; M-T-A</a>
-                                </div>
-                                <nav>
-                                    <div className="nav-mobile">
-                                        <a id="nav-toggle" href="#!">
-                                            <span></span>
-                                        </a>
-                                    </div>
-                                    <ul className="nav-list">
-                                        <li id="adminhomepage" className="hide-div">
-                                            <a href="/">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">Account</a>
-                                            <ul className="nav-dropdown">
-                                                <li>
-                                                    <a href="/dashboard">My Requests</a>
-                                                </li>
-                                                <li>
-                                                    <a href="./user_account.html">My Account</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a id="signoutButton" onClick={this.handleSignOut}>Sign Out</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </section>
-                    </div>
-                    <div className="container">
+                <section className="navigation">
+                      <div className="nav-container">
+                      <div className="brand">
+                          <a className="dashboard-logo" href="/">
+                          <img src={maintenanceLogo} className="logo-font" alt="Logo" />
+                          {' '}
+        &nbsp; M-T-A
 
-                        <br />
-                        <div className="row">
-                            <h2 className="center">All Requests</h2>
-                            <div className="row">
-                                <div className="col-m col-1-6-m">
-                                    <a>
-                                        <button id="createRequestButton" onClick={this.handleCreateRequest}>
-                                            <i className="material-icons">add</i>
+                        </a>
+                        </div>
+                      <nav>
+                          <div className="nav-mobile">
+                          <a id="nav-toggle" href="#!" onClick={this.displayToggleNav} className={toggleNav}>
+                              <span />
+                            </a>
+                        </div>
+                          <ul className={displayBlock}>
+                          <li id="adminhomepage" className="hide-div">
+                              <a href="#">Home</a>
+                            </li>
+                          <li>
+                              <a href="#!">Account</a>
+                              <ul className="nav-dropdown">
+                              <li>
+                                  <a href="/dashboard">My Requests</a>
+                                </li>
+                              <li>
+                                  <a href="#">My Account</a>
+                                </li>
+                            </ul>
+                            </li>
+                          <li>
+                              <a id="signoutButton" onClick={this.handleSignOut}>Sign Out</a>
+                            </li>
+                        </ul>
+                        </nav>
+                    </div>
+                    </section>
+              </div>
+                <div className="container">
+
+                      <br />
+                      <div className="row">
+                          <h2 className="center">All Requests</h2>
+                          <div className="row">
+                              <div className="col-m col-1-6-m">
+                                  <a>
+                                      <button id="createRequestButton" onClick={this.handleCreateRequest}>
+                                          <i className="material-icons">add</i>
                                         </button>
                                     </a>
                                 </div>
-                                <div className="col-m col-1-2-m">
-                                    <input id="filterRequestInput" id="filterRequestInput" placeholder="Search" />
+                              <div className="col-m col-1-2-m">
+                                  <input id="filterRequestInput" id="filterRequestInput" placeholder="Search" />
                                 </div>
-                                <div className="col-m col-1-3-m">
-                                    <select id="filterByStatus">
-                                        <option value="All">All</option>
-                                        <option value="New">New</option>
-                                        <option value="Pending">Approved</option>
-                                        <option value="Disapproved">Disapproved</option>
-                                        <option value="Resolved">Resolved</option>
+                              <div className="col-m col-1-3-m">
+                                  <select id="filterByStatus">
+                                      <option value="All">All</option>
+                                      <option value="New">New</option>
+                                      <option value="Pending">Approved</option>
+                                      <option value="Disapproved">Disapproved</option>
+                                      <option value="Resolved">Resolved</option>
                                     </select>
                                 </div>
 
                             </div>
-                            {/* <DisplayRequests /> */}
-                            <table id="requestTable">
-                                <thead>
-                                    <tr className="header">
-                                        <th>Title</th>
-                                        <th colSpan="2">Description</th>
-                                        <th>Status</th>
-                                        <th colSpan="2">Date</th>
-                                        <th colSpan="2">Edit/Delete</th>
+                          {/* <DisplayRequests /> */}
+                          <table id="requestTable">
+                              <thead>
+                                  <tr className="header">
+                                      <th>Title</th>
+                                      <th colSpan="2">Description</th>
+                                      <th>Status</th>
+                                      <th colSpan="2">Date</th>
+                                      <th colSpan="3">Edit/Delete</th>
                                     </tr>
                                 </thead>
-                                <tbody id="requestTableBody">
-                                    {
+                              <tbody id="requestTableBody">
+                                  {
                                         requests ?
-                                            requests.map(request => <RequestRow key={request.id} request={request} viewClickedRequest={this.viewClickedRequest} />) :
-                                            <tr>You have not made a request yet</tr>
+                                          requests.map(request => <RequestRow key={request.id} request={request} viewClickedRequest={this.viewClickedRequest} />) :
+                                          <tr>You have not made a request yet</tr>
                                     }
                                 </tbody>
                             </table>
                         </div>  <br />
-                        <br />
+                      <br />
                     </div>
-                    {showViewRequest && <ViewRequest showViewRequest={showViewRequest} request={request} hideModalRequest={this.hideModalRequest} />}
+                {showViewRequest && <ViewRequest showViewRequest={showViewRequest} request={request} hideModalRequest={this.hideModalRequest} />}
 
-                    {showRequestForm && <RequestForm showRequestForm={showRequestForm} request={request} hideModalRequest={this.hideModalRequest} title={title} description={description} />}
+                {showRequestForm && <RequestForm showRequestForm={showRequestForm} request={request} hideModalRequest={this.hideModalRequest} title={title} description={description} />}
 
 
-                    <br />
-                    <br />
-                    <div className="container">
-                        <div className="row">
-                            <div className="pagination">
-                                <section id="paginationSection">
-                                    <h2>Jump to page:</h2>
+                <br />
+                <br />
+                <div className="container">
+                      <div className="row">
+                          <div className="pagination">
+                              <section id="paginationSection">
+                                  <h2>Jump to page:</h2>
                                 </section>
                             </div>
                         </div>
                     </div>
-                    <div className="footer">
-                        <div className="row">
-                            <p>
+                <div className="footer">
+                      <div className="row">
+                          <p>
                                 © 2018 Copyright M-T-A by
-                    <a target="_blank" href="http://www.fakunlesamuel.com">FakSam</a>
+                              <a target="_blank" href="http://www.fakunlesamuel.com">FakSam</a>
                             </p>
                         </div>
                     </div>
-                </div>
+              </div>
 
-            </div>
+          </div>
       );
     }
 }

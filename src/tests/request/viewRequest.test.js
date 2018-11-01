@@ -62,7 +62,7 @@ describe('SignInTabForm Component', () => {
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
-  it('should a new comment', () => {
+  it('should close modal', () => {
     const wrapper = shallow(<ViewRequest store={store} {...props} />);
     const instance = wrapper.instance();
     instance.handleCloseError();
