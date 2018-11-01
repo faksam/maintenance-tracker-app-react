@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInTabForm Component should render without throwing an error 1`] = `
+exports[`LandingPage should render without throwing an error 1`] = `
 <div
   className="main-container"
 >

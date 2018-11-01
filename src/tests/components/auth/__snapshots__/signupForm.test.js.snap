@@ -40,11 +40,17 @@ exports[`SignUpTabForm Component should render without throwing an error 1`] = `
                 placeholder="Full Name"
                 required={true}
                 type="text"
-                value="fakunlesamuel@gmail.com"
+                value=""
               />
-              <label
-                id="fullNameLabel"
-              />
+              <div
+                className="display-none"
+                id="errorDiv"
+              >
+                <p
+                  className="hide-div"
+                  id="signupErrorMessage"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -70,11 +76,17 @@ exports[`SignUpTabForm Component should render without throwing an error 1`] = `
                 placeholder="Email"
                 required={true}
                 type="email"
-                value="fakunlesamuel@gmail.com"
+                value=""
               />
-              <label
-                id="emailLabel"
-              />
+              <div
+                className="display-none"
+                id="errorDiv"
+              >
+                <p
+                  className="hide-div"
+                  id="signupErrorMessage"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -100,11 +112,17 @@ exports[`SignUpTabForm Component should render without throwing an error 1`] = `
                 placeholder="Password"
                 required={true}
                 type="password"
-                value="Lifeisarace"
+                value=""
               />
-              <label
-                id="passwordLabel"
-              />
+              <div
+                className="display-none"
+                id="errorDiv"
+              >
+                <p
+                  className="hide-div"
+                  id="signupErrorMessage"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -130,11 +148,17 @@ exports[`SignUpTabForm Component should render without throwing an error 1`] = `
                 placeholder="Confirm Password"
                 required={true}
                 type="password"
-                value="Lifeisarace"
+                value=""
               />
-              <label
-                id="confirmPasswordLabel"
-              />
+              <div
+                className="display-none"
+                id="errorDiv"
+              >
+                <p
+                  className="hide-div"
+                  id="signupErrorMessage"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -147,6 +171,7 @@ exports[`SignUpTabForm Component should render without throwing an error 1`] = `
             <button
               className="btn-signup"
               onClick={[MockFunction]}
+              type="button"
             >
               Sign Up
             </button>

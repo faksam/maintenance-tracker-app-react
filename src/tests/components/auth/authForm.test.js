@@ -33,13 +33,12 @@ const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
 
 describe('AuthForm Component', () => {
-  it('should a new comment', () => {
+  it('should signin and signout user', () => {
     const wrapper = shallow(<AuthForm {...props} />);
     const instance = wrapper.instance();
     const e = {
       preventDefault: jest.fn()
     };
-    // expect(instance.isValid()).toBe(true);
     wrapper.setState({
       fullname: 'fakunlesamuel@gmail.com',
       email: 'fakunlesamuel@gmail.com',
@@ -56,24 +55,24 @@ describe('AuthForm Component', () => {
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
-  it('should render without throwing an error', () => {
-    const wrapper = shallow(<AuthForm store={store} {...props} />);
-    expect(wrapper.exists()).toBe(true);
-    expect(wrapper).toMatchSnapshot();
-  });
   it('should set state to props', () => {
     const wrapper = shallow(<AuthForm store={store} {...props} />);
     expect(wrapper.state()).toEqual({
-      fullname: '',
+      errors: {},
       email: '',
       password: '',
+      fullname: '',
       confirmPassword: '',
       accountEmail: '',
-      errors: {},
       accountPassword: '',
+      signInFormTabContent: 'tabcontent',
+      signUpFormTabContent: 'tabcontent-display',
+      signInTab: 'tablinks sign-tab',
+      signUpTab: 'tablinks sign-tab active',
+      errorDivClass: 'display-none',
     });
   });
-  it('should a new comment', () => {
+  it('should a close error', () => {
     const wrapper = shallow(<AuthForm {...props} />);
     const instance = wrapper.instance();
     const e = {

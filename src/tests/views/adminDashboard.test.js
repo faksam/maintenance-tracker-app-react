@@ -49,7 +49,7 @@ const initialState = {
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
 
-describe('SignInTabForm Component', () => {
+describe('Dashboard Component', () => {
   it('should render without throwing an error', () => {
     const wrapper = shallow(<Dashboard store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
@@ -62,18 +62,17 @@ describe('SignInTabForm Component', () => {
       showViewRequest: false
     });
   });
-  it('should render without throwing an error', () => {
+  it('should render without throwing an error when connected to store', () => {
     const wrapper = shallow(<ConnectedDashboard store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
-  it('should a new comment', () => {
+  it('should hide view modal', () => {
     const wrapper = shallow(<Dashboard {...props} />);
     const instance = wrapper.instance();
     const e = {
       preventDefault: jest.fn()
     };
-    // expect(instance.isValid()).toBe(true);
     instance.viewClickedRequest({}, e);
     instance.hideModalRequest();
   });

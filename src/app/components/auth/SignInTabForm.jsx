@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
  *
  */
 const SignInTabForm = ({
-  handleSignIn, accountEmail, accountPassword, handleChange
+  handleSignIn, accountEmail, accountPassword, handleChange,
+  errorDivClass, errors
 }) => (
   <div>
     <div className="container">
@@ -29,6 +30,14 @@ const SignInTabForm = ({
                 onChange={handleChange}
                 required
               />
+              <div id="errorDiv" className={errorDivClass}>
+                {
+                  errors.email
+                    ? (<p key="email" className="danger">{errors.email}</p>)
+                    : ''
+                }
+                <p id="signupErrorMessage" className="hide-div" />
+              </div>
             </div>
           </div>
           <div className="row">
@@ -43,6 +52,14 @@ const SignInTabForm = ({
                 onChange={handleChange}
                 required
               />
+              <div id="errorDiv" className={errorDivClass}>
+                {
+                  errors.password
+                    ? (<p key="password" className="danger">{errors.password}</p>)
+                    : ''
+                }
+                <p id="signupErrorMessage" className="hide-div" />
+              </div>
             </div>
           </div>
           <div className="row">
@@ -63,6 +80,8 @@ const SignInTabForm = ({
 );
 
 SignInTabForm.propTypes = {
+  errorDivClass: PropTypes.string,
+  errors: PropTypes.instanceOf(Object),
   handleSignIn: PropTypes.func.isRequired,
   accountEmail: PropTypes.string.isRequired,
   accountPassword: PropTypes.string.isRequired,

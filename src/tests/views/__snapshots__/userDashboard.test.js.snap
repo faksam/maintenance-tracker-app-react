@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignInTabForm Component should render without throwing an error 1`] = `
+exports[`Dashboard Component should render without throwing an error 1`] = `
 <div>
   <div
     className="main-container"
@@ -486,7 +486,7 @@ exports[`SignInTabForm Component should render without throwing an error 1`] = `
 </div>
 `;
 
-exports[`SignInTabForm Component should render without throwing an error 2`] = `
+exports[`Dashboard Component should render without throwing an error when connected 1`] = `
 <Dashboard
   auth={true}
   confirmPassword="Lifeisarace"

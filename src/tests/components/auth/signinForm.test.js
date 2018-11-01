@@ -3,8 +3,11 @@ import { shallow } from 'enzyme';
 import SignInTabForm from '../../../app/components/auth/SignInTabForm';
 
 const props = {
-  accountEmail: 'fakunlesamuel@gmail.com',
-  accountPassword: 'Lifeisarace',
+
+  errors: {},
+  accountEmail: '',
+  accountPassword: '',
+  errorDivClass: 'display-none',
   handleSignIn: jest.fn(),
   handleChange: jest.fn(),
 };

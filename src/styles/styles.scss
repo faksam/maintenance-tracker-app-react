@@ -229,8 +229,7 @@ button.danger:hover
 p.danger
 {
   font-weight: bold;
-  background-color: #CB3438;
-  color: #ffffff;
+  color: #CB3438;
 }
 button:disabled {
   background-color: rgb(179, 179, 179);
@@ -764,6 +763,13 @@ div.pagination a:hover {
   /* Style the tab content */
   .tabcontent {
     display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+
+  .tabcontent-display {
+    display: block;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;

@@ -47,7 +47,7 @@ const initialState = {
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(initialState);
 
-describe('SignInTabForm Component', () => {
+describe('RequestRow Component', () => {
   it('should render without throwing an error', () => {
     const wrapper = shallow(<ConnectedRequestRow store={store} {...props} />);
     expect(wrapper.exists()).toBe(true);
