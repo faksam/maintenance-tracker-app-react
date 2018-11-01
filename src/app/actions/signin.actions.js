@@ -5,15 +5,6 @@ import jwt from 'jwt-simple';
 import * as types from './types';
 import config from '../../config';
 
-export const signOutUser = (event) => {
-  if (event.target.textContent !== 'Sign out') return;
-  localStorage.clear();
-  return {
-    type: types.UNSET_CURRENT_USER,
-    user: {}
-  };
-};
-
 export const setCurrentUser = user => ({
   type: types.SET_CURRENT_USER,
   user

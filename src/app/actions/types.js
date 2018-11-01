@@ -1,7 +1,6 @@
 // auth actions
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const SIGN_UP_ERRORS = 'SIGN_UP_ERRORS';
-export const LOGOUT_USER = 'LOGOUT_USER';
 export const SET_CURRENT_USER_FAIL = 'SET_CURRENT_USER_FAIL';
 export const SET_CURRENT_USER_ERROR = 'SET_CURRENT_USER_ERROR';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
